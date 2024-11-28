@@ -1,63 +1,11 @@
+mod front_of_house; // load the file front_of_house in module tree
+mod back_of_house;
+
 use back_of_house::Breakfast;
 
 // like declaring symbolink link to actual path
 // we can use keyword 'as' to provide newName in case of conflict or very long name
-pub use crate::front_of_the_house::hosting as host;
-
-mod front_of_the_house {
-    pub mod hosting {
-        pub fn add_to_waitlist() {
-
-        }
-        fn seat_at_table() {
-
-        }
-    }
-
-    mod serving {
-        fn take_order() {
-
-        }
-        fn serve_order() {
-
-        }
-        fn take_payment() {
-
-        }
-    }
-}
-
-mod back_of_house {
-    // NOTE: we could not create Breakfast directly because seasonal is private 
-    // so we need functions for creating the instance
-    pub struct Breakfast {
-        pub toast: String,
-        seasonal_fruit: String,
-    }
-    impl Breakfast {
-        pub fn summer(toast: &str) -> Breakfast {
-            Breakfast {
-                toast: String::from(toast),
-                seasonal_fruit: String::from("peaches"),
-            }
-        }
-    }
-
-    pub enum Appetizer {
-        Soup, 
-        Salad,
-    }
-
-
-    fn fix_incorrect_order() {
-        cook_order();
-        
-    }
-    fn cook_order() {
-        // calling parent module path to deliver_order via super
-        super::deliver_order();
-    }
-}
+pub use crate::front_of_house::hosting as host;
 
 fn deliver_order() {
 
@@ -65,9 +13,9 @@ fn deliver_order() {
 
 pub fn eat_at_restaurant() {
     // Absolute path
-    crate::front_of_the_house::hosting::add_to_waitlist();
+    //crate::front_of_the_house::hosting::add_to_waitlist();
     // Relative path
-    front_of_the_house::hosting::add_to_waitlist();
+    //front_of_the_house::hosting::add_to_waitlist();
     // using use for short but must declare the crate/module in the scope or current crate
     //hosting::add_to_waitlist();
     host::add_to_waitlist();
